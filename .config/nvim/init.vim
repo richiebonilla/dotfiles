@@ -121,6 +121,7 @@ map <leader>a :qa<Enter>
 nnoremap <leader>b :buffers<CR>:buffer<Space>
 map <leader>f :Files<Enter>
 map <leader>n :NERDTreeToggle<Enter>
+map <leader>q :q<Enter>
 nnoremap <leader>s :sp<CR>
 nnoremap <leader>v :vsp<CR>
 " set splitbelow splitright made this line superfluous
@@ -130,9 +131,6 @@ map <leader>W :wq<Enter>
 map <leader>x :x<Enter>
 map <leader>! :q!<Enter>
 map <leader><Space> :bn<Enter>
-
-" Quit
-map zz :q<Enter>
 
 " Pane Navigation
 map <leader>j <C-W>j
