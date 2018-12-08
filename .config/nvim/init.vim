@@ -5,12 +5,17 @@
 "  ╚████╔╝ ██║██║ ╚═╝ ██║
 "   ╚═══╝  ╚═╝╚═╝     ╚═╝
 
+set nocompatible
+filetype plugin on
+
 call plug#begin()
 " Quicker Coding
 Plug 'valloric/MatchTagAlways'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
+Plug 'vitorgalvao/autoswap_mac'
+Plug 'nixon/vim-vmath'
 "Linting & Formatting
 Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 Plug 'w0rp/ale'
@@ -61,6 +66,10 @@ let g:airline_section_y=0
 let g:airline#extensions#branch#enabled = 1
 set scrolloff=30
 
+" Show tabs and trailing whitespace
+set listchars=tab:>~,nbsp:_,trail:•
+set list
+
 " Ignore case when searching
 set ignorecase
 
@@ -104,14 +113,17 @@ set splitbelow splitright
 " Remap leader key
 let mapleader = ","
 
+" Map ; to : for easier commands
+nnoremap ; :
+
 " Leader Key Mappings
 map <leader>a :qa<Enter>
 nnoremap <leader>b :buffers<CR>:buffer<Space>
 map <leader>f :Files<Enter>
 map <leader>n :NERDTreeToggle<Enter>
-map <leader>q :q<Enter>
 nnoremap <leader>s :sp<CR>
 nnoremap <leader>v :vsp<CR>
+" set splitbelow splitright made this line superfluous
 "nnoremap <leader>v :buffers<CR>:vert belowright sb<Space>
 map <leader>w :w<Enter>
 map <leader>W :wq<Enter>
@@ -119,14 +131,14 @@ map <leader>x :x<Enter>
 map <leader>! :q!<Enter>
 map <leader><Space> :bn<Enter>
 
+" Quit
+map zz :q<Enter>
+
 " Pane Navigation
 map <leader>j <C-W>j
 map <leader>k <C-W>k
 map <leader>h <C-W>h
 map <leader>l <C-W>l
-
-" Map ; to : for easier commands
-nnoremap ; :
 
 " Move key mappings
 nnoremap ∆ :m .+1<CR>==
@@ -151,7 +163,7 @@ let g:user_emmet_leader_key = '<C-a>'
 
 " Code Folding
 set foldmethod=indent
-set foldlevelstart=100
+set foldlevelstart=2
 
 " YouCompleteMe
 " Start autocompletion after 3 chars
@@ -179,3 +191,7 @@ autocmd BufWritePre * %s/\s\+$//e
 " Replace special characters with html equivalent
 autocmd FileType html inoremap &<space> &amp;<space>
 autocmd FileType html inoremap •<space> &bull;<space>
+
+" VMath Keybindings
+vmap <expr>  ++  VMATH_YankAndAnalyse()
+nmap         ++  vip++
